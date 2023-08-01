@@ -1,0 +1,9 @@
+<%- include("../default/header") %>
+<h3>- 상 세 정 보 -</h3>
+id : <%= member.M_ID %><br>
+pwd : <%= member.M_PWD %><br>
+name : <%= member.M_NAME %><br>
+addr : <%= member.M_ADDR %><br>
+<a href="/member/list">목록 이동</a>
+<a href="/member/modify_form?id=<%= member.M_ID %>">수정</a>
+<a href="/member/delete/<%= member.M_ID %>">삭제</a>

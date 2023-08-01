@@ -1,0 +1,18 @@
+<%- include("../default/header") %>
+<table border="1">
+    <tr>
+        <th>아이디</th><th>비밀번호</th><th>이 름</th><th>주 소</th>
+    </tr>
+    <tr>
+    <!--<% console.log(list) %>-->
+    <% list.forEach((member)=> {%>
+        <td><%= member.M_ID %></td>
+        <td><%= member.M_PWD %></td>
+        <td>
+            <a href="/member/view/<%= member.M_ID %>">
+                <%= member.M_NAME %></a>
+        </td>
+        <td><%= member.M_ADDR %></td>
+    </tr>
+    <% }) %>
+</table>
