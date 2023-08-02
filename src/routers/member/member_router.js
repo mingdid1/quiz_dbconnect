@@ -7,6 +7,10 @@ router.get("/", (req, res)=>{
 });
 
 router.get("/list", memberCtrl.list);
+
+router.get("/login", memberCtrl.login);
+router.post("/login_check", memberCtrl.loginCheck);
+
 router.get("/register_form", memberCtrl.registerForm);
 router.post("/register", memberCtrl.register);
 router.get("/view/:id", memberCtrl.memberView);

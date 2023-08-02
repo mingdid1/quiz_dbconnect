@@ -25,16 +25,18 @@ const insert = async(body) =>{
     return result;
 }
 
-const getMember = async (mId) => {
-    const sql = "select * from member where m_id=:id";
+const getMember = async(mId) => {
     let con = await oracledb.getConnection(dbConfig);
+    console.log(mId);
+    const sql = `select * from member where m_id='${mId}'`;
+    let member;
     try {
-        member = await con.execute(sql, mId);
+        member = await con.execute(sql);
         console.log("dao getmember : ", member);
     } catch (err) {
         console.log(err);
     }
-    return member.rows[0];
+    return member;
 }
 
 const modify = async (body)=> {

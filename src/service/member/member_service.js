@@ -6,6 +6,29 @@ const getList = async() => {
     return result.rows;
 }
 
+const loginCheck = async(body) => {
+    let result = await memberDAO.getMember(body.id);
+    console.log("1: ", result);
+    let msg = "", url = "", msgPack={};
+    if (result.rows.length === 1){
+        result = result.rows[0];
+        console.log("2: ", result);
+        if (result[1] == body.pwd){
+            msg ="로그인 성공";
+            url = "/";
+            msgPack.result = 0;
+        }else {
+            msg = "비밀번호 실패";
+            url = "/member/login";
+        }
+    }else {
+        msg = "일치하는 회원이 없습니다";
+        url = "/member/login";
+    }
+    msgPack.msg = getMessage(msg, url);
+    return msgPack;
+}
+
 const insert = async (body) => {
     const result = await memberDAO.insert(body);
     console.log("ser insert : ", result);
@@ -60,4 +83,4 @@ const deleteMember = async(body)=>{
     return getMessage(msg, url);
 }
 
-module.exports = { getList, insert, getMember, modify, deleteMember };
+module.exports = { getList, insert, getMember, modify, deleteMember, loginCheck };

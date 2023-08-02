@@ -10,6 +10,21 @@ const list = async(req, res)=> {
     res.render("member/list", {list});
 }
 
+const login = (req, res)=>{
+    res.render("member/login");
+}
+
+const loginCheck = async(req, res) => {
+    console.log(req.body);
+    const msgPack = await ser.loginCheck(req.body);
+    console.log("msgPack : ", msgPack);
+    console.log("msgPack.result : ", msgPack.result);
+    if (msgPack.result === 0){
+        req.session.username = req.body.id;
+    }
+    res.send(msgPack.msg);
+}
+
 const registerForm = (req, res)=> {
     res.render("member/register_form");
 }
@@ -45,5 +60,5 @@ const deleteMember = async(req, res)=>{
     res.send(msg);
 }
 
-module.exports = { list, registerForm, register, memberView,
+module.exports = { list, registerForm, register, memberView, login, loginCheck,
                  modifyForm, modify, deleteMember };

@@ -4,6 +4,11 @@ const bodyParser = require("body-parser");
 const app = express();
 
 app.use(bodyParser.urlencoded({extended : true}));
+
+const session = require ("express-session");
+const sessionConfig = require("./config/cookie_session/cookie_session_config");
+app.use(session(sessionConfig.sessionConfig));
+
 const router = require("./src/routers/router")(app);
 
 app.use("/", router);
